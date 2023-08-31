@@ -34,7 +34,7 @@ source('https://raw.githubusercontent.com/zhanglj37/imv_sem/main/fold.r')
 source('https://raw.githubusercontent.com/zhanglj37/imv_sem/main/prediction.r')
 ```
 
-### Six-factor Model vs Baseline Model
+### Six-factor Model vs Prevalence Model
 
 ```{r}
 data = read.table('BPI2019.dat')
