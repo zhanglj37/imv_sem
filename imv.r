@@ -37,7 +37,7 @@ imvfun <- function(model1, model2, vary, data, NY,
 }
 
 
-imv_prob_fun <- function(model, vary, data, NY, 
+imv_base_fun <- function(model, vary, data, NY, 
     varx=NA, seed=1234, nfold=5){
 
     # data preparation
