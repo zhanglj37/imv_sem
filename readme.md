@@ -3,13 +3,20 @@
 
 ## 1. Functions for calculating IMV in CFA with binary outcomes
 ### Main function
-- imvfun(model1, model2, vary, data, NY, varx=NA, seed=1234, nfold=5)
-- imv_base_fun(): imv for comparing one model with the baseline model that ignores the correlation between items
+- imvfun(model1, model2, vary, data, varx=NA, seed=1234, nfold=5)
+  - model1: Baseline model
+  - model2: Enhanced model
+  - vary: Name of variables
+  - data: Data
+  - varx: Currently set to NA; reserved for future SEM advancements
+  - seed: Seed for random data splitting during cross-validation
+  - nfold: Number of data segments in cross-validation. If set to 1, it means prediction uses the entire sample
+- imv_base_fun(): IMV for comparing one model with the baseline model that ignores the correlation between items
 
 ### Supporting functions:
-- foldfun: imv in one iteration in k-fold cv
-- predict_fun() or predict_insample_fun(): estimate in the training set and predict p_ij in the test set
-- imv.binary: imv calculation based y and p_i
+- foldfun(): IMV in one iteration in k-fold cv
+- predict_fun() or predict_insample_fun(): Predict on the test set after estimating on the training set
+- imv.binary(): IMV calculation based $y_i$ and $p_i$
   - source('https://raw.githubusercontent.com/ben-domingue/imv/main/R/imv_binary.R')
 
 
@@ -49,7 +56,7 @@ model1 <- 'AnxDep =~ NA*ad1 + ad2 + ad3 + ad4 + ad5
 '
 
 set.seed(1)
-base = imv_base_fun(model1, vary, data, length(vary))
+base = imv_base_fun(model1, vary, data)
 round(apply(base, 2, mean),3)
 ```
 
@@ -81,11 +88,11 @@ anova(fit5f, fit6f)
 
 # Out-of-sample prediction
 set.seed(1)
-imv56f <- imvfun(model_5f, model_6f, vary, data, length(vary), nfold=5)
+imv56f <- imvfun(model_5f, model_6f, vary, data, nfold=5)
 round(apply(imv56f, 2, mean), 3)
 
 # In-sample prediction
 set.seed(1)
-imv_56f_in <- imvfun(model_5f, model_6f, vary, data, length(vary), nfold=1)
+imv_56f_in <- imvfun(model_5f, model_6f, vary, data, nfold=1)
 round(imv_56f_in,3)
 ```

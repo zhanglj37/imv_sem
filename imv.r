@@ -1,7 +1,8 @@
 
-imvfun <- function(model1, model2, vary, data, NY, 
+imvfun <- function(model1, model2, vary, data, 
     varx=NA, seed=1234, nfold=5){
 
+    NY = length(vary)
     
     if(nfold > 1){ # cross-validation
         set.seed(seed)
@@ -37,8 +38,10 @@ imvfun <- function(model1, model2, vary, data, NY,
 }
 
 
-imv_base_fun <- function(model, vary, data, NY, 
+imv_base_fun <- function(model, vary, data, 
     varx=NA, seed=1234, nfold=5){
+    
+    NY = length(vary)
 
     # data preparation
     set.seed(seed)
