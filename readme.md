@@ -10,11 +10,11 @@
   - data: Data
   - varx: Currently set to NA; reserved for future SEM advancements
   - seed: Seed for random data splitting during cross-validation
-  - nfold: Number of data segments in cross-validation. If set to 1, it means prediction uses the entire sample
+  - nfold: Number of data segments in cross-validation. If set to 1, it means in-sample prediction. Otherwise, out-of-sample prediction will be used. The default value is 5.
 - imv_base_fun(): IMV for comparing one model with the baseline model that ignores the correlation between items
 
 ### Supporting functions:
-- foldfun(): IMV in one iteration in k-fold cv
+- foldfun(): Calculate IMV in one iteration of the k-folds 
 - predict_fun() or predict_insample_fun(): Predict on the test set after estimating on the training set
 - imv.binary(): IMV calculation based $y_i$ and $p_i$
   - source('https://raw.githubusercontent.com/ben-domingue/imv/main/R/imv_binary.R')
@@ -57,7 +57,7 @@ model1 <- 'AnxDep =~ NA*ad1 + ad2 + ad3 + ad4 + ad5
 
 set.seed(1)
 base = imv_base_fun(model1, vary, data)
-round(apply(base, 2, mean),3)
+round(apply(base, 2, mean),3) # averaged IMV in five folds
 ```
 
 
