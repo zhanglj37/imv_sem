@@ -26,8 +26,6 @@ Data source: Kim, M., Winkler, C., & Talley, S. (2021). Binary item cfa of behav
 
 ```{r}
 library(lavaan)
-library(tidyverse)
-
 source('https://raw.githubusercontent.com/ben-domingue/imv/main/R/imv_binary.R')
 source('https://raw.githubusercontent.com/zhanglj37/imv_sem/main/imv.r')
 source('https://raw.githubusercontent.com/zhanglj37/imv_sem/main/fold.r')
